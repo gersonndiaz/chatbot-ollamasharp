@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="author" content="Gerson Díaz" />
+  <title>Chat AI Open Source</title>
+  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/plugins/fontawesome/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- START MAIN CONTAINER -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- START SIDENAV -->
+      <div class="side-nav col-lg-3 col-md-12">
+
+        <!-- START NEW CHAT BUTTON -->
+        <div class="row p-2">
+          <div class="chat-btn d-flex align-items-center">
+            <span class="d-block">+ New Chat</span>
+          </div>
+        </div>
+
+        <!-- START MODELS -->
+        <div class="row p-2">
+          <label for="gpt-model" class="form-label">Model</label>
+          <select name="gpt-model" id="gpt-model" class="form-select text-light gpt-model">
+            <option value="llama3.2">llama3.2</option>
+            <option value="gemma:2b">gemma:2b</option>
+          </select>
+        </div>
+
+        <!-- START CONTROL -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">Chat</p>
+          </div>
+          <!-- <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="1" step="0.1" id="gpt-temperature"
+              name="gpt-temperature" value="0" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-temperature">0</output>
+          </div> -->
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-12">
+            <ul class="list-unstyled">
+
+              <!-- START SETTINGS -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-cog"></i> Settings
+                </a>
+              </li>
+
+              <!-- START GET HELP -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-question-circle"></i> Get Help
+                </a>
+              </li>
+
+              <!-- START LOG OUT -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-sign-out-alt"></i> Log Out
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- START CONTENT -->
+      <div class="content  p-0 pt-2 col-lg-9 col-md-12">
+        
+        <app-root></app-root>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- START FOOTER -->
+  <footer class="d-flex align-items-center justify-content-center position-relative bottom-0">
+    <div class="text-center">© 2024 Gerson Díaz</div>
+  </footer>
+
+  <!-- START EXTERNAL JS RESOURCES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/5.0.0-beta.5/index.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

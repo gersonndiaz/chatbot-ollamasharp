@@ -17,7 +17,16 @@ export class ChatComponent implements OnInit {
   public isSending: boolean = false;
   private messageBuffer: { [key: string]: string } = {};
 
+  public selectedModel: string = '';
+
   ngOnInit(): void {
+
+    const storedModel = localStorage.getItem('selectedModel');
+    if (storedModel)
+    {
+      this.selectedModel = storedModel;
+    }
+
     this.startConnection();
     this.addReceiveMessageListener();
   }
@@ -55,12 +64,19 @@ export class ChatComponent implements OnInit {
   }
 
   public sendMessage(): void {
+
+    const storedModel = localStorage.getItem('selectedModel');
+    if (storedModel)
+    {
+      this.selectedModel = storedModel;
+    }
+
     if (this.hubConnection && this.userMessage.trim()) {
       // Añadir el mensaje del usuario y bloquear el textarea
       this.messages.push({ id: 'user-' + Date.now(), content: this.userMessage, type: 'user' });
       this.isSending = true;
 
-      this.hubConnection.invoke('GetMessage', this.userMessage)
+      this.hubConnection.invoke('GetMessage', this.userMessage, this.selectedModel)
         .then(() => this.userMessage = '')
         .catch(err => console.error('Error al enviar el mensaje: ', err));
     }

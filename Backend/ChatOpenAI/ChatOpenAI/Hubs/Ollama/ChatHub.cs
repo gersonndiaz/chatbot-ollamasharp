@@ -5,11 +5,19 @@ namespace ChatOpenAI.Hubs.Ollama;
 
 public class ChatHub : Hub
 {
-    public async Task GetMessage(string message)
+    public async Task GetMessage(string message, string modelName)
     {
         var uri = new Uri("http://localhost:11434");
         var ollama = new OllamaApiClient(uri);
-        ollama.SelectedModel = "llama3.2";
+        
+        if (!String.IsNullOrEmpty(modelName))
+        {
+            ollama.SelectedModel = modelName;
+        }
+        else
+        {
+            ollama.SelectedModel = "llama3.2";
+        }
 
         string mId = Guid.NewGuid().ToString();
 

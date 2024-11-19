@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,8 @@ export class OllamamodelsComponent implements OnInit {
   httpClient = inject(HttpClient);
   public jsonResult: Result | null = null;
 
+  selectedModel: string = '';
+
   ngOnInit(): void {
     this.httpClient.get('http://localhost:5092/api/ollama/models')
             .subscribe({
@@ -21,9 +23,25 @@ export class OllamamodelsComponent implements OnInit {
               {
                 console.log(data);
                 this.jsonResult = data;
+
+                // Obtiene el valor guadado de un modelo previamente seleccionado
+                const storedModel = localStorage.getItem('selectedModel');
+                if (storedModel)
+                {
+                  this.selectedModel = storedModel;
+                }
               },
               error: (error) => console.error(error)
             });
+  }
+
+  onSelectedModel(event: Event)
+  {
+    const selectedElement = event.target as HTMLSelectElement;
+    this.selectedModel = selectedElement.value;
+
+    // Guardar modelo en localstorage
+    localStorage.setItem('selectedModel', this.selectedModel);
   }
 }
 
